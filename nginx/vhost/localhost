@@ -1,0 +1,7 @@
+location /static/ {
+    alias /baykar_iha_main/static/;
+}
+
+location /media/ {
+    alias /baykar_iha_main/media/;
+}

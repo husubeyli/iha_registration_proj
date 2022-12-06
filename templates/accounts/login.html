@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="vh-100 d-flex justify-content-center align-items-center ">
+    <div class="col-md-5 p-5 shadow-sm border rounded-5 border-primary bg-white">
+        <h2 class="text-center mb-4 text-primary">Login Form</h2>
+        <form id="login-user">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" id="username" required="required" class="form-control border border-primary" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control border border-primary" id="password">
+            </div>
+            <p class="small"><a class="text-primary" href="forget-password.html">Forgot password?</a></p>
+            <div class="d-grid">
+                <button class="btn btn-primary" type="submit">Login</button>
+            </div>
+        </form>
+        <div class="mt-3">
+            <p class="mb-0  text-center">Don't have an account? <a href="signup.html"
+                    class="text-primary fw-bold">Sign
+                    Up</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block js_custom %}
+<script>
+    $(function() {
+        $('#login-user').submit(function(e) {
+            e.preventDefault();
+            var _this = $(this)
+            $('.err-msg').remove();
+            var el = $('<div>')
+            el.addClass("alert alert-danger err-msg")
+            el.hide()
+            if (_this[0].checkValidity() == false) {
+                _this[0].reportValidity();
+                return false;
+            }
+            $.ajax({
+                headers: {
+                    "X-CSRFToken": '{{csrf_token}}'
+                },
+                url: "{% url 'accounts:login_ajax' %}",
+                data: new FormData($(this)[0]),
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST',
+                dataType: 'json',
+                error: err => {
+                    console.log(err)
+                    alert_toast("An error occured", 'error');
+                },
+                success: function(resp) {
+                    if (typeof(resp) == 'object' && resp.status == 'success') {
+                        el.removeClass("alert alert-danger err-msg")
+                        location.href = "{% url 'core:home' %}"
+                    } else if (resp.status == 'failed' && !!resp.msg) {
+                        el.text(resp.msg)
+                    } else {
+                        el.text("An error occured", 'error');
+                        console.err(resp)
+                    }
+                    _this.prepend(el)
+                    el.show('slow')
+                }
+            })
+        })
+    })
+</script>
+{% endblock js_custom %}

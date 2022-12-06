@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Marka</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{ iha.name }}</td>
+                    <td>{{ iha.markas }}</td>
+                    <td>{{ iha.categories }}</td>
+                    <td>{{ iha.weight }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

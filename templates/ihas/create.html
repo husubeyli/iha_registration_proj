@@ -1,0 +1,62 @@
+{% extends 'base.html' %} 
+{% block content %} 
+
+{% comment %} <form method="POST" enctype="multipart/form-data">
+  <!-- Security token -->
+  {% csrf_token %}
+
+  <!-- Using the formset -->
+  {{ form.as_p }}
+
+  <input type="submit" value="Submit" />
+</form> {% endcomment %}
+
+
+<div class="container-fluid">
+  <h1 class='text-center'>Create IHA</h1>
+  <hr />
+  <div class="row">
+    <div class="col-sm-4 offset-sm-4">
+      <form method="POST" >
+        {% csrf_token %}
+
+        <div class="form-group">
+          <label for="id_name">Name</label>
+          {{ form.name }}
+          
+          {{ form.name.errors }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_weight">Weight</label>
+          {{ form.weight }}
+          
+          {{ form.weight.errors }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_categories">Category</label>
+          {{ form.categories }}
+          
+          {{ form.categories.errors }}
+        </div>
+
+        <div class="form-group">
+          <label for="id_categories">Marka</label>
+          {{ form.markas }}
+          
+          {{ form.markas.errors }}
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary mt-2 text-right">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  
+  </form>
+
+</div> 
+
+{% endblock %}
