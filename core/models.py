@@ -31,8 +31,8 @@ class IHA(models.Model):
     name = models.CharField('Ad', max_length=255)
     weight = models.DecimalField(_("Weight"), max_digits=10, decimal_places=2)
 
-    categories = models.ForeignKey('core.CategoryIHA', related_name='ihas', on_delete=models.CASCADE)
-    markas = models.ForeignKey('core.Marka', related_name='ihas', on_delete=models.CASCADE)
+    categories = models.ForeignKey('core.CategoryIHA', related_name='ihas', on_delete=models.CASCADE, blank=True, null=True)
+    markas = models.ForeignKey('core.Marka', related_name='ihas', on_delete=models.CASCADE, blank=True, null=True)
     slug = models.SlugField(_("slug"), editable=False, unique=True)
     
     created_at = models.DateTimeField(auto_now_add=True)
