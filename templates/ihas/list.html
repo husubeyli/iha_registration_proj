@@ -25,169 +25,85 @@
                         </header>
 
                         
-                        <div class="filter-content collapse show" id="collapse_1" style="">
+                        <div class="card-body">
+                        <!-- <form class="pb-3"> -->
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="search_inputs" placeholder="Search" />
+                            </div>
+                        <!-- </form> -->
+                        </div>
+                        <!-- card-body.// -->
+                    </article>
+                    <!-- filter-group  .// -->
+                    <form class="filter-group">
+                        <header class="card-header">
+                            <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" class="">
+                                <i class="icon-control fa fa-chevron-down"></i>
+                                <h6 class="title">Categories</h6>
+                            </a>
+                        </header>
+                            
+                            
                             <div class="card-body">
-                                <!-- <form class="pb-3"> -->
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="search_inputs" placeholder="Search" />
-                                    </div>
-                                <!-- </form> -->
+                                {% for obj in categories %}
+                                    <label for="{{ obj.name }}_{{ obj.id }}" class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input categories" />
+                                        <div class="custom-control-label">
+                                            {{obj.name}}
+                                        </div>
+                                    </label>
+                                {% endfor %}
                             </div>
                             <!-- card-body.// -->
-                        </div>
-                    </article>
+                    </form>
+                    <!-- filter-group .// -->
                     <!-- filter-group  .// -->
                     <article class="filter-group">
                         <header class="card-header">
                             <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" class="">
                                 <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">Brands</h6>
+                                <h6 class="title">Markas</h6>
                             </a>
                         </header>
-                        <div class="filter-content collapse show" id="collapse_2" style="">
                             
                             
                             <div class="card-body">
-                                {% for obj in categories %}
-                                    <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" checked="" class="custom-control-input" />
+                                {% for obj in markas %}
+                                    <label for="{{ obj.name }}_{{ obj.id }}" class="custom-control custom-checkbox">
+                                        <input type="checkbox" {% for id in checkbox_markas %} {% if obj.id == id %} checked {% endif %} {% endfor %} name="{{ obj.id }}" id="{{ obj.name }}_{{ obj.id }}"  class="custom-control-input markas" />
                                         <div class="custom-control-label">
-                                            Mercedes
-                                            <b class="badge badge-pill badge-light float-right">120</b>
+                                            {{obj.name}}
                                         </div>
                                     </label>
                                 {% endfor %}
-
-                                <!-- <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" checked="" class="custom-control-input" />
-                                    <div class="custom-control-label">
-                                        Toyota
-                                        <b class="badge badge-pill badge-light float-right">15</b>
-                                    </div>
-                                </label>
-
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" checked="" class="custom-control-input" />
-                                    <div class="custom-control-label">
-                                        Mitsubishi
-                                        <b class="badge badge-pill badge-light float-right">35</b>
-                                    </div>
-                                </label>
-
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" checked="" class="custom-control-input" />
-                                    <div class="custom-control-label">
-                                        Nissan
-                                        <b class="badge badge-pill badge-light float-right">89</b>
-                                    </div>
-                                </label>
-
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" />
-                                    <div class="custom-control-label">
-                                        Honda
-                                        <b class="badge badge-pill badge-light float-right">30</b>
-                                    </div>
-                                </label> -->
-
                             </div>
                             <!-- card-body.// -->
-                        </div>
                     </article>
                     <!-- filter-group .// -->
                     <article class="filter-group">
                         <header class="card-header">
                             <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
                                 <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">Price range</h6>
+                                <h6 class="title">Weight range</h6>
                             </a>
                         </header>
-                        <div class="filter-content collapse show" id="collapse_3" style="">
                             <div class="card-body">
-                                <input type="range" class="custom-range" min="0" max="100" name="" />
+                                <!-- <input type="range" class="custom-range" min="0" max="100" name="" /> -->
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label>Min</label>
-                                        <input class="form-control" placeholder="$0" type="number" />
+                                        <input class="form-control" id="min_weight" value="{{ min_weight }}" name="min_weight" placeholder="0" type="number" />
                                     </div>
                                     <div class="form-group text-right col-md-6">
                                         <label>Max</label>
-                                        <input class="form-control" placeholder="$1,0000" type="number" />
+                                        <input class="form-control" id="max_weight" value="{{max_weight}}" name="max_weight" placeholder="{{max_weight}}" type="number" />
                                     </div>
                                 </div>
                                 <!-- form-row.// -->
-                                <button class="btn btn-block btn-primary">Apply</button>
+                                <button id="filterBtn" class="btn btn-block btn-primary">Apply</button>
                             </div>
                             <!-- card-body.// -->
-                        </div>
                     </article>
-                    <!-- filter-group .// -->
-                    <article class="filter-group">
-                        <header class="card-header">
-                            <a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
-                                <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">Sizes</h6>
-                            </a>
-                        </header>
-                        <div class="filter-content collapse show" id="collapse_4" style="">
-                            <div class="card-body">
-                                <label class="checkbox-btn">
-                                    <input type="checkbox" />
-                                    <span class="btn btn-light"> XS </span>
-                                </label>
-
-                                <label class="checkbox-btn">
-                                    <input type="checkbox" />
-                                    <span class="btn btn-light"> SM </span>
-                                </label>
-
-                                <label class="checkbox-btn">
-                                    <input type="checkbox" />
-                                    <span class="btn btn-light"> LG </span>
-                                </label>
-
-                                <label class="checkbox-btn">
-                                    <input type="checkbox" />
-                                    <span class="btn btn-light"> XXL </span>
-                                </label>
-                            </div>
-                            <!-- card-body.// -->
-                        </div>
-                    </article>
-                    <!-- filter-group .// -->
-                    <article class="filter-group">
-                        <header class="card-header">
-                            <a href="#" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" class="">
-                                <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">More filter</h6>
-                            </a>
-                        </header>
-                        <div class="filter-content collapse in" id="collapse_5" style="">
-                            <div class="card-body">
-                                <label class="custom-control custom-radio">
-                                    <input type="radio" name="myfilter_radio" checked="" class="custom-control-input" />
-                                    <div class="custom-control-label">Any condition</div>
-                                </label>
-
-                                <label class="custom-control custom-radio">
-                                    <input type="radio" name="myfilter_radio" class="custom-control-input" />
-                                    <div class="custom-control-label">Brand new</div>
-                                </label>
-
-                                <label class="custom-control custom-radio">
-                                    <input type="radio" name="myfilter_radio" class="custom-control-input" />
-                                    <div class="custom-control-label">Used items</div>
-                                </label>
-
-                                <label class="custom-control custom-radio">
-                                    <input type="radio" name="myfilter_radio" class="custom-control-input" />
-                                    <div class="custom-control-label">Very old</div>
-                                </label>
-                            </div>
-                            <!-- card-body.// -->
-                        </div>
-                    </article>
-                    <!-- filter-group .// -->
                 </div>
                 <!-- card.// -->
             </aside>
@@ -212,16 +128,10 @@
                     </div>
                 </header>
                 <!-- sect-heading -->
-                <div class="row">
-                    {% for obj in ihas %}
+                <div class="row" id="iha_content_box">
+                    {% for obj in page_obj %}
                         <div class="col-md-4">
                             <figure class="card card-product-grid">
-                                {% comment %} <div class="img-wrap">
-                                    <span class="badge badge-danger"> NEW </span>
-                                    <img src="http://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/7.jpg"
-                                        class="img-fluid" />
-                                    <a class="btn-overlay" href="#"><i class="fa fa-search-plus"></i> Quick view</a>
-                                </div> {% endcomment %}
                                 <!-- img-wrap.// -->
                                 <figcaption class="info-wrap">
                                     <div class="fix-height">
@@ -260,19 +170,21 @@
                     <!-- col.// -->
                 </div>
                 <!-- row end.// -->
-                {% if is_paginated %}
-                    <nav class="mt-4" aria-label="Page navigation sample">
+            
+                    <nav class="mt-4" aria-label="Page navigation sample" id="paginate_sec">
+                        {% if page_obj %}
+                        {{checkbox_categories_ids}}ASDASD
                         <ul class="pagination">
                             {% if page_obj.has_previous %}
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if checkbox_categories_ids %}&categories={% for obj in checkbox_categories_ids %}{{obj}},{% endfor %}{% endif %}{% if checkbox_markas_ids %}&markas={% for obj in checkbox_markas_ids %}{{obj}}{% if not forloop.last %},{% endif %}{% endfor %}{% endif %}{% if min_weight %}&min_weight={{min_weight}}{% endif %}{% if max_weight %}&max_weight={{ max_weight }}{% endif %}">Previous</a>
                                 </li>
                             {% else %}
                                 <li class="page-item disabled">
                                     <span class="page-link">Previous</span>
                                 </li>
                             {% endif %}
-
+                    
                             {% for i in paginator.page_range %}
                                 {% if page_obj.number == i %}
                                     <li class="page-item active">
@@ -280,16 +192,16 @@
                                     </li>
                                 {% else %}
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                        <a class="page-link" href="?page={{ i }}{% if checkbox_categories_ids %}&categories={% for obj in checkbox_categories_ids %}{{obj}},{% endfor %}{% endif %}{% if checkbox_markas_ids %}&markas={% for obj in checkbox_markas_ids %}{{obj}}{% if not forloop.last %},{% endif %}{% endfor %}{% endif %}{% if min_weight %}&min_weight={{min_weight}}{% endif %}{% if max_weight %}&max_weight={{ max_weight }}{% endif %}">{{ i }}</a>
                                     </li>
                                     <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
                                     <li class="page-item"><a class="page-link" href="#">3</a></li>-->
                                 {% endif %}
                             {% endfor %}
-
+                    
                             {% if page_obj.has_next %}
                                 <li class="page-item">
-                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if checkbox_categories_ids %}&categories={% for obj in checkbox_categories_ids %}{{obj}},{% endfor %}{% endif %}{% if checkbox_markas_ids %}&markas={% for obj in checkbox_markas_ids %}{{obj}}{% if not forloop.last %},{% endif %}{% endfor %}{% endif %}{% if min_weight %}&min_weight={{min_weight}}{% endif %}{% if max_weight %}&max_weight={{ max_weight }}{% endif %}">Next</a>
                                 </li>
                             {% else %}
                                 <li class="page-item disabled">
@@ -297,8 +209,9 @@
                                 </li>
                             {% endif %}
                         </ul>
+                        {% endif %}
                     </nav>
-                {% endif %}
+
             </main>
         </div>
     </div>
@@ -312,13 +225,91 @@
     <script>
 
 
+        $('#filterBtn').click('click', (event) => {
+            console.log('salam')
+            event.preventDefault();
+            let categories = [];
+            let markas = []
 
-        $(document).ready(function(){
-            $('#search_input').on('change', ()=> {
-                console.log('salam')
+            // checked cateogires filter input type checkbox
+            $('.categories:checked').each(function() {
+                categories.push($(this).attr('name'));
+            });
+
+            // checked markas filter input type checkbox
+            $('.markas:checked').each(function() {
+                markas.push($(this).attr('name'));
+            });
+
+
+            console.log(markas, 'markas')
+            let min_weight = $('#min_weight').val();
+            let max_weight = $('#max_weight').val();
+            console.log(max_weight)
+            $.ajax({
+                url: `{% url "core:iha_list" %}`,
+                async: true,
+                type: 'GET',
+                data: {
+                    'categories': categories, 
+                    'markas': markas,
+                    'min_weight': min_weight,
+                    'max_weight': max_weight
+                },
+                //dataType: 'json',
+                success: function(response) {
+                    //let url_s = new URL(window.location.href)
+                    let url = new URLSearchParams();
+
+                    let category_in_url = ''
+                    let markas_in_url = ''
+
+                    $('#iha_content_box').html(response.include)
+                    $('#paginate_sec').html(response.paginate)
+
+                    // change url without reload 
+                    
+                    url.delete('page')
+                    url.delete('min_weight')
+                    url.delete('max_weight')
+                    url.delete('page')
+                    url.set('page', 1)
+                    $('.categories:checked').each(function() {
+                        category_in_url += `${$(this).attr('name')},`
+                    });
+
+                    $('.markas:checked').each(function() {
+                        markas_in_url += `${$(this).attr('name')},`
+                    });
+                    
+                    if (category_in_url) {
+
+                        url.set('categories', category_in_url);
+                    }
+                    else {
+                        url.delete('cateogires');
+                    }
+                    if (markas_in_url) {
+
+                        url.set('markas', markas_in_url);
+                    }
+                    else {
+                        url.delete('cateogires');
+                    }
+                    console.log(max_weight)
+                    url.set('min_weight', min_weight);
+                    url.set('max_weight', max_weight);
+
+                    // this step url changed
+                    history.replaceState(null, null, "?"+url.toString())
+                },
+                error: function(response){
+                    console.log(response, 'error');
+                }
             })
+            
         })
-        
+
 
     </script>
 {% endblock js_custom %}

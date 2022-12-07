@@ -1,10 +1,17 @@
 from email.policy import default
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-# Create your models here.
+from django.urls import reverse
 
 
 class Marka(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+    
+    
+class Model(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -31,6 +38,9 @@ class IHA(models.Model):
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ["-created_at"]
 
     def __str__(self):
         return self.name
@@ -40,3 +50,7 @@ class IHA(models.Model):
         self.slug = f'{self.name.lower()}-{self.id}'
         # self.save()
         super(IHA, self).save(*args, **kwargs) # Call the real save() method
+        
+    def get_absolute_url(self):
+        """ Returns the detail URL. """
+        return reverse("core:iha_detail", kwargs={"slug": self.slug})

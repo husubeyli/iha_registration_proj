@@ -1,0 +1,38 @@
+{% if page_obj %}
+{{checkbox_categories_ids}}
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if checkbox_categories_ids %}&categories={% for obj in checkbox_categories_ids %}{{obj}},{% endfor %}{% endif %}{% if checkbox_markas_ids %}&markas={% for obj in checkbox_markas_ids %}{{obj}}{% if not forloop.last %},{% endif %}{% endfor %}{% endif %}{% if min_weight %}&min_weight={{min_weight}}{% endif %}{% if max_weight %}&max_weight={{ max_weight }}{% endif %}">Previous</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+            </li>
+        {% endif %}
+
+        {% for i in paginator.page_range %}
+            {% if page_obj.number == i %}
+                <li class="page-item active">
+                    <span class="page-link">{{ i }}</span>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ i }}{% if checkbox_categories_ids %}&categories={% for obj in checkbox_categories_ids %}{{obj}},{% endfor %}{% endif %}{% if checkbox_markas_ids %}&markas={% for obj in checkbox_markas_ids %}{{obj}}{% if not forloop.last %},{% endif %}{% endfor %}{% endif %}{% if min_weight %}&min_weight={{min_weight}}{% endif %}{% if max_weight %}&max_weight={{ max_weight }}{% endif %}">{{ i }}</a>
+                </li>
+                <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if checkbox_categories_ids %}&categories={% for obj in checkbox_categories_ids %}{{obj}},{% endfor %}{% endif %}{% if checkbox_markas_ids %}&markas={% for obj in checkbox_markas_ids %}{{obj}}{% if not forloop.last %},{% endif %}{% endfor %}{% endif %}{% if min_weight %}&min_weight={{min_weight}}{% endif %}{% if max_weight %}&max_weight={{ max_weight }}{% endif %}">Next</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">Next</span>
+            </li>
+        {% endif %}
+    </ul>
+{% endif %}
