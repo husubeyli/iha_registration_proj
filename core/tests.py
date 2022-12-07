@@ -1,3 +1,7 @@
-from django.test import TestCase
+import unittest
+from django.test import TestCase, Client
 
-# Create your tests here.
+
+c
+
+
