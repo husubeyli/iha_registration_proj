@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
     'widget_tweaks',
-    'django_filters',
 ]
 
 MIDDLEWARE = [

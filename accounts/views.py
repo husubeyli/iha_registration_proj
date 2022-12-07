@@ -43,41 +43,6 @@ def logout_user(request):
     return redirect('/')
 
 
-# def sign_up(request):
-#     user = request.user
-#     context = {}
-#     if user.is_authenticated:
-#         return redirect('home-page')
-#     context['page_title'] = "Register User"
-#     if request.method=='POST':
-#         data = request.POST
-#         form = UserRegistrationForm(data)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data.get('username')
-#             password = form.cleaned_data.get('password1')
-#             loginUser = authenticate(username= username, password = pwd)
-#             login(request, loginUser)
-#             return redirect('home-page')
-#         else:
-#             context['reg_form'] = form
-#     return render(request, 'accounts/register.html', context)
-
-# def sign_up(response):
-#     if response.method == "POST":
-#         form = UserRegistrationForm(response.POST)
-#         print('formdayi')
-#         if form.is_valid():
-#             print('form valid oldu')
-#             form.save()
-
-#         return redirect("/accounts/register")
-#     else:
-#         form = UserRegistrationForm()
-
-#     return render(response, "accounts/register.html", {"form": form})
-
-
 class SignUpView(SuccessMessageMixin, CreateView):
     template_name = 'accounts/register.html'
     success_url = reverse_lazy('accounts:login')

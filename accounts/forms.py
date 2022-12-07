@@ -13,18 +13,6 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2', )
-        # labels = {
-        #     'username': 'Ad',
-        #     'email': 'Elektron poçt ünvanı'
-        # }
-        # error_messages = {
-        #         "password_incorrect": _("Cari şifrə yanlışdır"),
-        #         "password_mismatch": _("Şifrə təsdiqləməsi yanlışdır"),
-        #         "email_unique": _("Bu elektron poct adressli istifadəçi artıq mövcuddur"),
-        #         "phone_invalid" : _("Nömrənin son 7 rəqəmini daxil edin (yəni, prefixsiz)"),
-        #         "short_password": _("Şifrə minimum 6 simvoldan ibarət olmalıdır"),
-        #         "only_english_letters": _("Yalnız ingilis hərfləri"),
-        #     }
 
         
     def clean_email(self):
