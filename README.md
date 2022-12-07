@@ -1,9 +1,9 @@
 # Introduction
 
-The goal of this project is to provide minimalistic django project template that everyone can use, which _just works_ out of the box and has the basic setup you can expand on. 
+The goal of this project is to provide minimalistic django project template that iha create project
 
-Template is written with django 1.11 and python 3 in mind.
-
+Template is written with django 4.1.2 and python 3.8 in mind.
+Docker version 20.10.20
 
 ### Main features
 
