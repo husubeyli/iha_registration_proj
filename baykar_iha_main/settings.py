@@ -24,7 +24,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*bzm$mjn9rs@g*%!yy_chmo^fhe(#x_0b#abrqq@%l+rlda2z9'
 
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = not os.environ.get("DEBUG", False) == "False"
 STAGING = os.environ.get("STAGING", "False") == "True"
@@ -34,18 +33,17 @@ PROD = not DEBUG
 ALLOWED_HOSTS = ['*']
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
 
     # local app
     'core.apps.CoreConfig',
@@ -77,8 +75,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                "core.context_processors.context_data", # custom context processors
-                
+                "core.context_processors.context_data",  # custom context processors
+
             ],
         },
     },
@@ -102,7 +100,6 @@ DATABASES = {
         "PORT": os.environ.get("POSTGRES_PORT", "5432"),
     }
 }
-
 
 
 # Password validation
@@ -150,8 +147,9 @@ STATIC_URL = 'static/'
 if PROD or STAGING:
     STATIC_ROOT = os.path.join(BASE_DIR, "static")
 else:
-    # STATIC_ROOT = os.path.join(BASE_DIR, "static")
-    STATICFILES_DIRS = [
+
+    # STATIC_ROOT = os.path.join(BASE_DIR, "static") # when local uncommit this section after run the commando python manage.py collectstatic
+    STATICFILES_DIRS = [  # when local commit
         os.path.join(BASE_DIR, "static")
     ]
 
@@ -162,17 +160,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AUTH_USER_MODEL = "accounts.User"
 
-
-JAZZMIN_SETTINGS = {
-    # title of the window (Will default to current_admin_site.site_title if absent or None)
-    "site_title": "Satis Hesabat",
-
-    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_header": "Satis Hesabat",
-
-    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
-    "site_brand": "Husubayli",
-}
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login'

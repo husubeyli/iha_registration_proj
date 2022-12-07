@@ -19,6 +19,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLSpython manage.py migrate dashboard
+    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('accounts/', include('accounts.urls')),
