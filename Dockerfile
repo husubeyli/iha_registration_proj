@@ -11,6 +11,7 @@ gettext
 COPY . .
 
 
-# CMD ["uwsgi", "--ini", "/code/uwsgi.ini"]
+CMD ["uwsgi", "--ini", "/code/uwsgi.ini"]
 
-CMD [ "gunicorn", "--bind", "0.0.0.0", "-p", "8000",  "baykar_iha_main.wsgi" ]
+# CMD [ "gunicorn", "--bind", "0.0.0.0", "-p", "8000",  "baykar_iha_main.wsgi" ]
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

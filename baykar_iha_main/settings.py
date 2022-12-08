@@ -160,6 +160,5 @@ else:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
 LOGIN_REDIRECT_URL = reverse_lazy('core:home')
 LOGIN_URL = reverse_lazy('core:home')
