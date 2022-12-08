@@ -1,12 +1,6 @@
-import json
-from django.shortcuts import render
-from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import JsonResponse, HttpResponse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.core import serializers
 
 from core.models import IHA
 from core.forms import IHACreateForm
@@ -17,7 +11,6 @@ class HomePageView(generic.TemplateView):
 
 
 class IHACreateView(LoginRequiredMixin, generic.CreateView):
-    # model = IHA
     form_class = IHACreateForm
     template_name = 'ihas/create.html'
     success_url = reverse_lazy('core:iha_list')
