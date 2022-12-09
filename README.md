@@ -42,7 +42,7 @@ Activate the virtualenv for your project.
     
 Install project dependencies:
 
-    $ pip install -r requirements/local.txt
+    $ pip install -r requirements.txt
     
     
 Then simply apply the migrations:
@@ -54,5 +54,4 @@ You can now run the development server:
 
     $ python manage.py runserver
     
- Server address
-    $ http://3.143.253.187/
+
