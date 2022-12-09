@@ -46,8 +46,8 @@
                             
                             <div class="card-body">
                                 {% for obj in categories %}
-                                    <label for="{{ obj.name }}_{{ obj.id }}" class="custom-control custom-checkbox">
-                                        <input type="checkbox" {% for id in checkbox_categories %} {% if obj.id == id %} checked {% endif %} {% endfor %} name="{{ obj.id }}" id="{{ obj.name }}_{{ obj.id }}" class="custom-control-input categories" />
+                                    <label for="categories_{{ obj.id }}" class="custom-control custom-checkbox">
+                                        <input type="checkbox" {% for id in checkbox_categories %} {% if obj.id == id %} checked {% endif %} {% endfor %} data-object="{{ obj.id }}" id="categories_{{ obj.id }}" class="custom-control-input categories" />
                                         <div class="custom-control-label">
                                             {{obj.name}}
                                         </div>
@@ -69,8 +69,8 @@
                             
                             <div class="card-body">
                                 {% for obj in markas %}
-                                    <label for="{{ obj.name }}_{{ obj.id }}" class="custom-control custom-checkbox">
-                                        <input type="checkbox" {% for id in checkbox_markas %} {% if obj.id == id %} checked {% endif %} {% endfor %} name="{{ obj.id }}" id="{{ obj.name }}_{{ obj.id }}"  class="custom-control-input markas" />
+                                    <label for="markas_{{ obj.id }}" class="custom-control custom-checkbox">
+                                        <input type="checkbox" {% for id in checkbox_markas %} {% if obj.id == id %} checked {% endif %} {% endfor %} data-object="{{ obj.id }}" id="markas_{{ obj.id }}"  class="custom-control-input markas" />
                                         <div class="custom-control-label">
                                             {{obj.name}}
                                         </div>
@@ -231,12 +231,12 @@
 
             // checked cateogires filter input type checkbox
             $('.categories:checked').each(function() {
-                categories.push($(this).attr('name'));
+                categories.push($(this).data('object'));
             });
 
             // checked markas filter input type checkbox
             $('.markas:checked').each(function() {
-                markas.push($(this).attr('name'));
+                markas.push($(this).data('object'));
             });
 
             let min_weight = $('#min_weight').val();

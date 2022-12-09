@@ -37,7 +37,7 @@ services:
       - "postgres"
     env_file: ./.env
     environment:
-      - VIRTUAL_HOST=3.137.209.179
+      - VIRTUAL_HOST=localhost
       - VIRTUAL_PORT=8000
       - TIMEOUT=300
       - HTTP_PORT=800

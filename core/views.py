@@ -71,7 +71,7 @@ class IHAListView(generic.ListView):
         context["checkbox_categories"] = list(
             map(int, str(self.request.GET.get('categories', '0')).split('-')))
         context["checkbox_markas"] = list(
-            map(int, str(self.request.GET.get('categories', '0')).split('-')))
+            map(int, str(self.request.GET.get('markas', '0')).split('-')))
         if self.request.GET.get('query', False):
             print(self)
             context['search_input'] = self.request.GET['query']
