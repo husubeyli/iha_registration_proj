@@ -49,7 +49,6 @@ class IHAListView(generic.ListView):
         querydict = self.request.GET
         # get request GET data filter query
         if querydict.get('categories', False):
-            print(list(map(int, str(querydict.get('categories')).split('-'))), 'salam')
             queryset = queryset.filter(categories__id__in=list(
                 map(int, str(querydict.get('categories')).split('-'))))
         if querydict.get('markas', False):
