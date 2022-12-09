@@ -153,11 +153,11 @@
                 <!-- row end.// -->
             
                     <nav class="mt-4" aria-label="Page navigation sample" id="paginate_sec">
-                        {% if page_obj %}
+                        {% if is_paginated %}
                             <ul class="pagination">
                                 {% if page_obj.has_previous %}
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search_input %}&query={{search_input}}{% endif %}{% if checkbox_categories and checkbox_categories.0 != 0 %}&categories={% for id in checkbox_categories %}{% if forloop.last %}{{id}}{% else %}{{id}}-{%endif%}{%endfor%}{%endif%}{% if checkbox_markas and checkbox_markas.0 != 0 %}&markas={% for id in checkbox_markas %}{% if forloop.last %}{{id}}{% else %}{{id}}-{%endif%}{%endfor%}{%endif%}{% if filter_max_weight != False %}&max_weight={{filter_max_weight}}{% endif %}{% if filter_min_weight != False %}&min_weight={{filter_min_weight}}{% endif %}">Previous</a>
                                     </li>
                                 {% else %}
                                     <li class="page-item disabled">
@@ -172,7 +172,7 @@
                                         </li>
                                     {% else %}
                                         <li class="page-item">
-                                            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                            <a class="page-link" href="?page={{ i }}{% if search_input %}&query={{search_input}}{% endif %}{% if checkbox_categories and checkbox_categories.0 != 0 %}&categories={% for id in checkbox_categories %}{% if forloop.last %}{{id}}{% else %}{{id}}-{%endif%}{%endfor%}{%endif%}{% if checkbox_markas and checkbox_markas.0 != 0 %}&markas={% for id in checkbox_markas %}{% if forloop.last %}{{id}}{% else %}{{id}}-{%endif%}{%endfor%}{%endif%}{% if filter_max_weight != False %}&max_weight={{filter_max_weight}}{% endif %}{% if filter_min_weight != False %}&min_weight={{filter_min_weight}}{% endif %}">{{ i }}</a>
                                         </li>
                                         <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>-->
@@ -181,7 +181,7 @@
                         
                                 {% if page_obj.has_next %}
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search_input %}&query={{search_input}}{% endif %}{% if checkbox_categories and checkbox_categories.0 != 0 %}&categories={% for id in checkbox_categories %}{% if forloop.last %}{{id}}{% else %}{{id}}-{%endif%}{%endfor%}{%endif%}{% if checkbox_markas and checkbox_markas.0 != 0 %}&markas={% for id in checkbox_markas %}{% if forloop.last %}{{id}}{% else %}{{id}}-{%endif%}{%endfor%}{%endif%}{% if filter_max_weight != False %}&max_weight={{filter_max_weight}}{% endif %}{% if filter_min_weight != False %}&min_weight={{filter_min_weight}}{% endif %}">Next</a>
                                     </li>
                                 {% else %}
                                     <li class="page-item disabled">
@@ -222,7 +222,7 @@
 
             let min_weight = $('#min_weight').val();
             let max_weight = $('#max_weight').val();
-            
+            url.search = ''
             var search_params = url.searchParams;
 
             if (categories.length > 0){
@@ -253,6 +253,8 @@
 
             event.preventDefault();
             var search_value = $('#search_input').val()
+
+            url.search = ''
             var search_params = url.searchParams;
             
 
