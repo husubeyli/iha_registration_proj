@@ -49,9 +49,9 @@ class IHA(models.Model):
     def save(self, *args, **kwargs):
         super(IHA, self).save(*args, **kwargs)
         self.slug = f'{self.name.lower()}-{self.id}'
-        # self.save()
         super(IHA, self).save(*args, **kwargs)  # Call the real save() method
 
+    @property
     def get_absolute_url(self):
         """ Returns the detail URL. """
         return reverse("core:iha_detail", kwargs={"slug": self.slug})

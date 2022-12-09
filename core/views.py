@@ -39,10 +39,8 @@ class IHAUpdateView(LoginRequiredMixin, generic.UpdateView):
 class IHAListView(generic.ListView):
     template_name = 'ihas/list.html'
     model = IHA
-    context_object_name = 'ihas_list'
     ordering = '-created_at'
     paginate_by = 1
-    # queryset = IHA.objects.all().select_related('markas', 'categories')
 
     def get_queryset(self):
         queryset = super().get_queryset()
